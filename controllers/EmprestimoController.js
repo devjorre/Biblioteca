@@ -78,3 +78,4 @@ class EmprestimoController {
     }
   }
 }
+module.exports = EmprestimoController;

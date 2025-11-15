@@ -9,7 +9,7 @@ class Livro {
     this.disponivel = disponivel !== undefined ? disponivel : true;
   }
 
-  // Validar dados do livro
+ 
   static validar(titulo, autor) {
     if (!titulo || !autor) {
       throw new Error('Título e autor são obrigatórios');
@@ -17,22 +17,22 @@ class Livro {
     return true;
   }
 
-  // Verificar se livro está disponível
+
   estaDisponivel() {
     return this.disponivel === true;
   }
 
-  // Marcar como indisponível
+
   marcarIndisponivel() {
     this.disponivel = false;
   }
 
-  // Marcar como disponível
+
   marcarDisponivel() {
     this.disponivel = true;
   }
 
-  // Converter para JSON
+
   toJSON() {
     return {
       id_livro: this.id_livro,

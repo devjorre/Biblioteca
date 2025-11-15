@@ -6,7 +6,7 @@ class EmprestimoService {
     this.livroDAO = livroDAO;
   }
 
-  // Listar todos os empréstimos
+
   async listarTodos() {
     try {
       return await this.emprestimoDAO.listarTodos();
@@ -15,7 +15,7 @@ class EmprestimoService {
     }
   }
 
-  // Listar empréstimos ativos
+ 
   async listarAtivos() {
     try {
       return await this.emprestimoDAO.listarAtivos();
@@ -24,7 +24,7 @@ class EmprestimoService {
     }
   }
 
-  // Buscar empréstimo por ID
+
   async buscarPorId(id) {
     try {
       if (!id || isNaN(id)) {
@@ -42,24 +42,24 @@ class EmprestimoService {
     }
   }
 
-  // Realizar novo empréstimo
+
   async realizar(dados) {
     try {
-      // Validar dados
+      
       Emprestimo.validar(dados.id_usuario, dados.id_livro);
       
-      // Verificar se livro está disponível
+     
       const livro = await this.livroDAO.buscarPorId(dados.id_livro);
       if (!livro || !livro.estaDisponivel()) {
         throw new Error('Livro não está disponível');
       }
       
-      // Calcular datas
+    
       const dataRetirada = new Date();
       const dataPrevistaDevolucao = new Date(dataRetirada);
       dataPrevistaDevolucao.setDate(dataPrevistaDevolucao.getDate() + (dados.dias_emprestimo || 7));
       
-      // Criar empréstimo
+     
       const emprestimo = new Emprestimo(
         null,
         dados.id_usuario,
@@ -70,10 +70,10 @@ class EmprestimoService {
         0
       );
       
-      // Salvar empréstimo
+      
       await this.emprestimoDAO.criar(emprestimo);
       
-      // Atualizar disponibilidade do livro
+    
       await this.livroDAO.atualizarDisponibilidade(dados.id_livro, false);
       
       return { mensagem: 'Empréstimo realizado com sucesso' };
@@ -82,21 +82,21 @@ class EmprestimoService {
     }
   }
 
-  // Devolver livro
+ 
   async devolver(id) {
     try {
-      // Validar ID
+      
       if (!id || isNaN(id)) {
         throw new Error('ID inválido');
       }
       
-      // Buscar empréstimo
+      
       const emprestimo = await this.emprestimoDAO.buscarPorId(id);
       if (!emprestimo) {
         throw new Error('Empréstimo não encontrado');
       }
       
-      // Calcular multa
+    
       const dataDevolucao = new Date();
       const dataPrevista = new Date(emprestimo.data_prevista_devolucao);
       let multa = 0;
@@ -106,14 +106,14 @@ class EmprestimoService {
         multa = diasAtraso * 1.00; // R$ 1,00 por dia de atraso
       }
       
-      // Atualizar empréstimo com devolução
+      
       await this.emprestimoDAO.atualizarDevolucao(
         id,
         dataDevolucao.toISOString().split('T')[0],
         multa
       );
       
-      // Atualizar disponibilidade do livro
+     
       await this.livroDAO.atualizarDisponibilidade(emprestimo.id_livro, true);
       
       return { mensagem: 'Livro devolvido com sucesso', multa: multa };
@@ -122,15 +122,15 @@ class EmprestimoService {
     }
   }
 
-  // Deletar empréstimo
+
   async deletar(id) {
     try {
-      // Validar ID
+   
       if (!id || isNaN(id)) {
         throw new Error('ID inválido');
       }
       
-      // Verificar se empréstimo existe
+   
       const emprestimo = await this.emprestimoDAO.buscarPorId(id);
       if (!emprestimo) {
         throw new Error('Empréstimo não encontrado');
@@ -144,3 +144,4 @@ class EmprestimoService {
     }
   }
 }
+module.exports = EmprestimoService;

@@ -96,15 +96,15 @@ class LivroService {
     }
   }
 
-  // Deletar livro
+
   async deletar(id) {
     try {
-      // Validar ID
+
       if (!id || isNaN(id)) {
         throw new Error('ID inválido');
       }
       
-      // Verificar se livro existe
+
       const livro = await this.livroDAO.buscarPorId(id);
       if (!livro) {
         throw new Error('Livro não encontrado');
@@ -118,3 +118,4 @@ class LivroService {
     }
   }
 }
+module.exports = LivroService;

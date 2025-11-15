@@ -5,7 +5,7 @@ class UsuarioDAO {
     this.pool = pool;
   }
 
-  // Listar todos os usuários
+
   async listarTodos() {
     try {
       const connection = await this.pool.getConnection();
@@ -18,7 +18,7 @@ class UsuarioDAO {
     }
   }
 
-  // Buscar usuário por ID
+
   async buscarPorId(id) {
     try {
       const connection = await this.pool.getConnection();
@@ -36,7 +36,7 @@ class UsuarioDAO {
     }
   }
 
-  // Buscar usuário por matrícula
+
   async buscarPorMatricula(matricula) {
     try {
       const connection = await this.pool.getConnection();
@@ -54,7 +54,7 @@ class UsuarioDAO {
     }
   }
 
-  // Criar novo usuário
+
   async criar(usuario) {
     try {
       const connection = await this.pool.getConnection();
@@ -73,7 +73,7 @@ class UsuarioDAO {
     }
   }
 
-  // Atualizar usuário
+
   async atualizar(id, usuario) {
     try {
       const connection = await this.pool.getConnection();
@@ -89,7 +89,7 @@ class UsuarioDAO {
     }
   }
 
-  // Deletar usuário
+
   async deletar(id) {
     try {
       const connection = await this.pool.getConnection();
@@ -101,4 +101,6 @@ class UsuarioDAO {
       throw new Error(`Erro ao deletar usuário: ${error.message}`);
     }
   }
+
 }
+module.exports = UsuarioDAO;

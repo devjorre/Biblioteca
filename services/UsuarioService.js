@@ -5,7 +5,7 @@ class UsuarioService {
     this.usuarioDAO = usuarioDAO;
   }
 
-  // Listar todos os usuários
+ 
   async listarTodos() {
     try {
       return await this.usuarioDAO.listarTodos();
@@ -14,7 +14,7 @@ class UsuarioService {
     }
   }
 
-  // Buscar usuário por ID
+
   async buscarPorId(id) {
     try {
       if (!id || isNaN(id)) {
@@ -81,15 +81,15 @@ class UsuarioService {
     }
   }
 
-  // Deletar usuário
+
   async deletar(id) {
     try {
-      // Validar ID
+      
       if (!id || isNaN(id)) {
         throw new Error('ID inválido');
       }
       
-      // Verificar se usuário existe
+      
       const usuario = await this.usuarioDAO.buscarPorId(id);
       if (!usuario) {
         throw new Error('Usuário não encontrado');
@@ -103,3 +103,4 @@ class UsuarioService {
     }
   }
 }
+module.exports = UsuarioService;

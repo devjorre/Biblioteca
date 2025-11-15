@@ -113,3 +113,4 @@ class EmprestimoDAO {
     }
   }
 }
+module.exports = EmprestimoDAO;

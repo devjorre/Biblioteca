@@ -5,7 +5,7 @@ class LivroDAO {
     this.pool = pool;
   }
 
-  // Listar todos os livros
+
   async listarTodos() {
     try {
       const connection = await this.pool.getConnection();
@@ -18,7 +18,7 @@ class LivroDAO {
     }
   }
 
-  // Listar apenas livros disponíveis
+
   async listarDisponiveis() {
     try {
       const connection = await this.pool.getConnection();
@@ -31,7 +31,7 @@ class LivroDAO {
     }
   }
 
-  // Buscar livro por ID
+
   async buscarPorId(id) {
     try {
       const connection = await this.pool.getConnection();
@@ -49,7 +49,7 @@ class LivroDAO {
     }
   }
 
-  // Criar novo livro
+
   async criar(livro) {
     try {
       const connection = await this.pool.getConnection();
@@ -65,7 +65,7 @@ class LivroDAO {
     }
   }
 
-  // Atualizar livro
+
   async atualizar(id, livro) {
     try {
       const connection = await this.pool.getConnection();
@@ -81,7 +81,7 @@ class LivroDAO {
     }
   }
 
-  // Deletar livro
+
   async deletar(id) {
     try {
       const connection = await this.pool.getConnection();
@@ -94,7 +94,7 @@ class LivroDAO {
     }
   }
 
-  // Atualizar disponibilidade
+
   async atualizarDisponibilidade(id, disponivel) {
     try {
       const connection = await this.pool.getConnection();
@@ -110,3 +110,6 @@ class LivroDAO {
     }
   }
 }
+
+module.exports = LivroDAO;
+

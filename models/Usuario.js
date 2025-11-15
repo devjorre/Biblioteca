@@ -7,13 +7,13 @@ class Usuario {
     this.telefone = telefone;
   }
 
-  // Validar dados do usuário
+
   static validar(nome, matricula, email) {
     if (!nome || !matricula || !email) {
       throw new Error('Nome, matrícula e email são obrigatórios');
     }
     
-    // Validar formato de email
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       throw new Error('Email inválido');
@@ -22,7 +22,7 @@ class Usuario {
     return true;
   }
 
-  // Converter para JSON
+
   toJSON() {
     return {
       id_usuario: this.id_usuario,
@@ -33,3 +33,4 @@ class Usuario {
     };
   }
 }
+module.exports = Usuario;
