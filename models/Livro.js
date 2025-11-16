@@ -21,6 +21,7 @@ estaDisponivel() {
     return this.disponivel === 1 || this.disponivel === true;
   }
 
+  
   marcarIndisponivel() {
     this.disponivel = false;
   }

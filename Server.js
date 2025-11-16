@@ -6,17 +6,18 @@ const bodyParser = require('body-parser');
 
 const config = require('./config');
 
-// DAOs
+
 const UsuarioDAO = require('./DAO/UsuarioDAO');
 const LivroDAO = require('./DAO/LivroDAO');
 const EmprestimoDAO = require('./DAO/EmprestimoDAO');
 
-// Services
+
+
 const UsuarioService = require('./services/UsuarioService');
 const LivroService = require('./services/LivroService');
 const EmprestimoService = require('./services/EmprestimoService');
 
-// Controllers
+
 const UsuarioController = require('./controllers/UsuarioController');
 const LivroController = require('./controllers/LivroController');
 const EmprestimoController = require('./controllers/EmprestimoController');
@@ -38,9 +39,7 @@ let usuarioController;
 let livroController;
 let emprestimoController;
 
-/* ========================================
-   1. CONECTAR AO BANCO
-======================================== */
+
 async function inicializarBanco() {
   try {
     pool = await mysql.createPool(config.database);
@@ -56,9 +55,7 @@ async function inicializarBanco() {
   }
 }
 
-/* ========================================
-   2. INICIAR DAOs, SERVICES E CONTROLLERS
-======================================== */
+
 async function inicializarDependencias() {
   if (!pool) {
     console.error("✗ ERRO: pool está undefined na inicialização das dependências!");
@@ -82,25 +79,24 @@ async function inicializarDependencias() {
   console.log("✓ Dependências criadas com sucesso.");
 }
 
-/* ========================================
-   3. ROTAS
-======================================== */
+
 function inicializarRotas() {
-  // Usuários
+  
   app.get('/api/usuarios', (req, res) => usuarioController.listar(req, res));
   app.post('/api/usuarios', (req, res) => usuarioController.criar(req, res));
   app.get('/api/usuarios/:id', (req, res) => usuarioController.buscarPorId(req, res));
   app.put('/api/usuarios/:id', (req, res) => usuarioController.atualizar(req, res));
   app.delete('/api/usuarios/:id', (req, res) => usuarioController.deletar(req, res));
 
-  // Livros
+
   app.get('/api/livros', (req, res) => livroController.listar(req, res));
   app.get('/api/livros/disponiveis', (req, res) => livroController.listarDisponiveis(req, res));
   app.post('/api/livros', (req, res) => livroController.criar(req, res));
   app.put('/api/livros/:id', (req, res) => livroController.atualizar(req, res));
   app.delete('/api/livros/:id', (req, res) => livroController.deletar(req, res));
 
-  // Empréstimos
+
+
   app.get('/api/emprestimos', (req, res) => emprestimoController.listar(req, res));
   app.get('/api/emprestimos/ativos', (req, res) => emprestimoController.listarAtivos(req, res));
   app.post('/api/emprestimos', (req, res) => emprestimoController.realizar(req, res));
@@ -108,9 +104,7 @@ function inicializarRotas() {
   app.delete('/api/emprestimos/:id', (req, res) => emprestimoController.deletar(req, res));
 }
 
-/* ========================================
-   4. INICIAR SERVIDOR
-======================================== */
+
 async function iniciarServidor() {
   await inicializarBanco();
   await inicializarDependencias();

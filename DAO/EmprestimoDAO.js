@@ -5,7 +5,7 @@ class EmprestimoDAO {
     this.pool = pool;
   }
 
-  // Listar todos os empréstimos
+  
   async listarTodos() {
     try {
       const connection = await this.pool.getConnection();
@@ -23,7 +23,7 @@ class EmprestimoDAO {
     }
   }
 
-  // Listar empréstimos ativos (não devolvidos)
+  
   async listarAtivos() {
     try {
       const connection = await this.pool.getConnection();
@@ -42,7 +42,8 @@ class EmprestimoDAO {
     }
   }
 
-  // Buscar empréstimo por ID
+ 
+
   async buscarPorId(id) {
     try {
       const connection = await this.pool.getConnection();
@@ -68,7 +69,7 @@ class EmprestimoDAO {
     }
   }
 
-  // Criar novo empréstimo
+  
   async criar(emprestimo) {
     try {
       const connection = await this.pool.getConnection();
@@ -84,7 +85,7 @@ class EmprestimoDAO {
     }
   }
 
-  // Atualizar empréstimo (devolução)
+  
   async atualizarDevolucao(id, dataDevolucao, multa) {
     try {
       const connection = await this.pool.getConnection();
@@ -100,7 +101,7 @@ class EmprestimoDAO {
     }
   }
 
-  // Deletar empréstimo
+  
   async deletar(id) {
     try {
       const connection = await this.pool.getConnection();
