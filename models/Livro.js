@@ -17,11 +17,9 @@ class Livro {
     return true;
   }
 
-
-  estaDisponivel() {
-    return this.disponivel === true;
+estaDisponivel() {
+    return this.disponivel === 1 || this.disponivel === true;
   }
-
 
   marcarIndisponivel() {
     this.disponivel = false;
@@ -45,3 +43,4 @@ class Livro {
     };
   }
 }
+module.exports = Livro;

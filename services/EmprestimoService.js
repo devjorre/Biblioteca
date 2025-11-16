@@ -46,13 +46,16 @@ class EmprestimoService {
   async realizar(dados) {
     try {
       
-      Emprestimo.validar(dados.id_usuario, dados.id_livro);
-      
+     if (!dados.id_usuario || !dados.id_livro) {
+  throw new Error("Dados inválidos: id_usuario e id_livro são obrigatórios");
+}
+
      
       const livro = await this.livroDAO.buscarPorId(dados.id_livro);
-      if (!livro || !livro.estaDisponivel()) {
-        throw new Error('Livro não está disponível');
-      }
+  if (!livro || livro.disponivel === 0 || livro.disponivel === false) {
+    throw new Error('Livro não está disponível');
+}
+
       
     
       const dataRetirada = new Date();
@@ -103,7 +106,7 @@ class EmprestimoService {
       
       if (dataDevolucao > dataPrevista) {
         const diasAtraso = Math.floor((dataDevolucao - dataPrevista) / (1000 * 60 * 60 * 24));
-        multa = diasAtraso * 1.00; // R$ 1,00 por dia de atraso
+        multa = diasAtraso * 1.00; 
       }
       
       

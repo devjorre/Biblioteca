@@ -55,3 +55,4 @@ class Emprestimo {
     };
   }
 }
+module.exports = Emprestimo;
