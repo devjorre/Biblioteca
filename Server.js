@@ -4,7 +4,7 @@ const mysql = require('mysql2/promise');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
-const config = require('./config');
+const config = require('./config.js');
 
 
 const UsuarioDAO = require('./DAO/UsuarioDAO');

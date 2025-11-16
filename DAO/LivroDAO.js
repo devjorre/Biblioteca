@@ -110,17 +110,7 @@ class LivroDAO {
     }
   }
 }
-const Livro = require('../models/Livro');
 
-class LivroDAO {
-  constructor(pool) {
-    this.pool = pool;
-  }
-
-  async listarTodos() {
-    return [];
-  }
-}
 
 module.exports = LivroDAO;
 
