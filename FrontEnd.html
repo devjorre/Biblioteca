@@ -1,529 +1,630 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca Universitária</title>
-   <link rel="stylesheet" href="style.css">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Biblioteca Universitária</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div class="container">
-        
-        <header class="header">
-            <h1>📚 Biblioteca Universitária</h1>
-            <nav class="nav">
-                <button class="nav-btn active" data-page="home">Início</button>
-                <button class="nav-btn" data-page="usuarios">Usuários</button>
-                <button class="nav-btn" data-page="livros">Livros</button>
-                <button class="nav-btn" data-page="emprestimos">Empréstimos</button>
-            </nav>
-        </header>
+  <div class="container">
+    <header class="header">
+      <h1>📚 Biblioteca Universitária</h1>
+      <nav class="nav">
+        <button class="nav-btn active" data-page="home">Início</button>
+        <button class="nav-btn" data-page="usuarios">Usuários</button>
+        <button class="nav-btn" data-page="livros">Livros</button>
+        <button class="nav-btn" data-page="emprestimos">Empréstimos</button>
+        <button class="nav-btn" data-page="multas">Multas</button>
+      </nav>
+    </header>
 
-        
-        <main class="main">
-            
-            <section id="home" class="page active">
-                <div class="welcome">
-                    <h2>Bem-vindo ao Sistema de Biblioteca</h2>
-                    <p>Gerencie usuários, livros e empréstimos de forma simples e eficiente.</p>
-                    <div class="stats">
-                        <div class="stat-card">
-                            <h3 id="total-usuarios">0</h3>
-                            <p>Usuários Cadastrados</p>
-                        </div>
-                        <div class="stat-card">
-                            <h3 id="total-livros">0</h3>
-                            <p>Livros Disponíveis</p>
-                        </div>
-                        <div class="stat-card">
-                            <h3 id="total-emprestimos">0</h3>
-                            <p>Empréstimos Ativos</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+    <main class="main">
+      <section id="home" class="page active">
+        <div class="welcome">
+          <h2>Bem-vindo ao Sistema de Biblioteca</h2>
+          <p>Gerencie usuários, livros e empréstimos de forma simples e eficiente.</p>
+          <div class="stats">
+            <div class="stat-card">
+              <h3 id="total-usuarios">0</h3>
+              <p>Usuários Cadastrados</p>
+            </div>
+            <div class="stat-card">
+              <h3 id="total-livros">0</h3>
+              <p>Livros Disponíveis</p>
+            </div>
+            <div class="stat-card">
+              <h3 id="total-emprestimos">0</h3>
+              <p>Empréstimos Ativos</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-            
-            <section id="usuarios" class="page">
-                <h2>Gerenciar Usuários</h2>
-                
-                
-                <div class="form-container">
-                    <h3>Adicionar Novo Usuário</h3>
-                    <form id="form-usuario">
-                        <input type="text" id="usuario-nome" placeholder="Nome Completo" required>
-                        <input type="text" id="usuario-matricula" placeholder="Matrícula" required>
-                        <input type="email" id="usuario-email" placeholder="Email" required>
-                        <input type="tel" id="usuario-telefone" placeholder="Telefone">
-                        <button type="submit" class="btn-primary">Adicionar Usuário</button>
-                    </form>
-                </div>
+      <section id="usuarios" class="page">
+        <h2>Gerenciar Usuários</h2>
+        <div class="form-container">
+          <h3>Adicionar Novo Usuário</h3>
+          <form id="form-usuario">
+            <input type="text" id="usuario-nome" placeholder="Nome Completo" required>
+            <input type="text" id="usuario-matricula" placeholder="Matrícula" required>
+            <input type="email" id="usuario-email" placeholder="Email" required>
+            <input type="tel" id="usuario-telefone" placeholder="Telefone">
+            <button type="submit" class="btn-primary">Adicionar Usuário</button>
+          </form>
+        </div>
 
-                
-                <div class="table-container">
-                    <h3>Lista de Usuários</h3>
-                    <table id="usuarios-table">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Nome</th>
-                                <th>Matrícula</th>
-                                <th>Email</th>
-                                <th>Telefone</th>
-                                <th>Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-            </section>
+        <div class="table-container">
+          <h3>Lista de Usuários</h3>
+          <table id="usuarios-table">
+            <thead>
+              <tr>
+                <th>ID</th><th>Nome</th><th>Matrícula</th><th>Email</th><th>Telefone</th><th>Ações</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
 
-           
-            <section id="livros" class="page">
-                <h2>Gerenciar Livros</h2>
-                
-                
-                <div class="form-container">
-                    <h3>Adicionar Novo Livro</h3>
-                    <form id="form-livro">
-                        <input type="text" id="livro-titulo" placeholder="Título" required>
-                        <input type="text" id="livro-autor" placeholder="Autor" required>
-                        <input type="number" id="livro-ano" placeholder="Ano de Publicação">
-                        <input type="text" id="livro-categoria" placeholder="Categoria">
-                        
-                        <button type="submit" class="btn-primary">Adicionar Livro</button>
-                    </form>
-                </div>
+      <section id="livros" class="page">
+        <h2>Gerenciar Livros</h2>
+        <div class="form-container">
+          <h3>Adicionar Novo Livro</h3>
+          <form id="form-livro">
+            <input type="text" id="livro-titulo" placeholder="Título" required>
+            <input type="text" id="livro-autor" placeholder="Autor" required>
+            <input type="number" id="livro-ano" placeholder="Ano de Publicação">
+            <input type="text" id="livro-categoria" placeholder="Categoria">
+            <button type="submit" class="btn-primary">Adicionar Livro</button>
+          </form>
+        </div>
+        <div class="table-container">
+          <h3>Lista de Livros</h3>
+          <table id="livros-table">
+            <thead>
+              <tr><th>ID</th><th>Título</th><th>Autor</th><th>Ano</th><th>Categoria</th><th>Disponível</th><th>Ações</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
 
-               
-                <div class="table-container">
-                    <h3>Lista de Livros</h3>
-                    <table id="livros-table">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Título</th>
-                                <th>Autor</th>
-                                <th>Ano</th>
-                                <th>Categoria</th>
-                                <th>Disponível</th>
-                                <th>Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-            </section>
+      <section id="emprestimos" class="page">
+        <h2>Gerenciar Empréstimos</h2>
+        <div class="form-container">
+          <h3>Realizar Novo Empréstimo</h3>
+          <form id="form-emprestimo">
+            <select id="emprestimo-usuario" required>
+              <option value="">Selecione um Usuário</option>
+            </select>
+            <select id="emprestimo-livro" required>
+              <option value="">Selecione um Livro</option>
+            </select>
+            <input type="number" id="emprestimo-dias" placeholder="Dias de Empréstimo" value="7" min="1">
+            <button type="submit" class="btn-primary">Realizar Empréstimo</button>
+          </form>
+        </div>
 
-            
-            <section id="emprestimos" class="page">
-                <h2>Gerenciar Empréstimos</h2>
-                
-                
-                <div class="form-container">
-                    <h3>Realizar Novo Empréstimo</h3>
-                    <form id="form-emprestimo">
-                        <select id="emprestimo-usuario" required>
-                            <option value="">Selecione um Usuário</option>
-                        </select>
-                        <select id="emprestimo-livro" required>
-                            <option value="">Selecione um Livro</option>
-                        </select>
-                        <input type="number" id="emprestimo-dias" placeholder="Dias de Empréstimo" value="7" min="1">
-                        <button type="submit" class="btn-primary">Realizar Empréstimo</button>
-                    </form>
-                </div>
+        <div class="table-container">
+          <h3>Lista de Empréstimos</h3>
+          <table id="emprestimos-table">
+            <thead>
+              <tr>
+                <th>ID</th><th>Usuário</th><th>Livro</th><th>Data Retirada</th><th>Data Prevista</th><th>Data Devolução</th><th>Multa</th><th>Ações</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
 
-                
-                <div class="table-container">
-                    <h3>Lista de Empréstimos</h3>
-                    <table id="emprestimos-table">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Usuário</th>
-                                <th>Livro</th>
-                                <th>Data Retirada</th>
-                                <th>Data Prevista</th>
-                                <th>Data Devolução</th>
-                                <th>Multa</th>
-                                <th>Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-            </section>
-        </main>
+      <section id="multas" class="page">
+        <h2>Gerenciar Multas</h2>
 
-        
-        <footer class="footer">
-            <p>&copy; 2024 Sistema de Biblioteca Universitária. Todos os direitos reservados.</p>
-        </footer>
-    </div>
+        <div class="form-container">
+          <h3>Registrar / Editar Multa</h3>
+          <form id="form-multa">
+            <input type="hidden" id="multa-id">
+            <input type="number" id="multa-emprestimo-id" placeholder="ID do Empréstimo" required>
+            <input type="number" step="0.01" id="multa-valor" placeholder="Valor da Multa" required>
+            <label style="margin-top: 10px;">
+              <input type="checkbox" id="multa-pago"> Multa Paga
+            </label>
+            <button type="submit" class="btn-primary">Salvar Multa</button>
+            <button type="button" id="btn-limpar-form-multa" class="btn-secondary">Limpar</button>
+          </form>
+        </div>
 
-    <script>
-        
-        
-        const API_URL = 'http://localhost:3000/api';
+        <div class="table-container">
+          <h3>Lista de Multas</h3>
+          <table id="multas-table">
+            <thead>
+              <tr><th>ID</th><th>Usuário</th><th>Empréstimo</th><th>Valor</th><th>Status</th><th>Ações</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
 
-        
+    <footer class="footer">
+      <p>&copy; 2024 Sistema de Biblioteca Universitária. Todos os direitos reservados.</p>
+    </footer>
+  </div>
 
-        document.querySelectorAll('.nav-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const page = btn.getAttribute('data-page');
-                
-                
-                document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-                
-                
-                btn.classList.add('active');
-                document.getElementById(page).classList.add('active');
-                
-                
-                if (page === 'usuarios') carregarUsuarios();
-                if (page === 'livros') carregarLivros();
-                if (page === 'emprestimos') carregarEmprestimos();
-                if (page === 'home') carregarEstatisticas();
-            });
+  <script>
+    const API_URL = 'http://localhost:3000/api';
+
+    // Navegação
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const page = btn.getAttribute('data-page');
+        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(page).classList.add('active');
+
+        if (page === 'usuarios') carregarUsuarios();
+        if (page === 'livros') carregarLivros();
+        if (page === 'emprestimos') carregarEmprestimos();
+        if (page === 'home') carregarEstatisticas();
+        if (page === 'multas') carregarMultas();
+      });
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      carregarEstatisticas();
+    });
+
+    // Estatísticas
+    async function carregarEstatisticas() {
+      try {
+        const usuarios = await fetch(`${API_URL}/usuarios`).then(r => r.json());
+        const livros = await fetch(`${API_URL}/livros`).then(r => r.json());
+        const emprestimos = await fetch(`${API_URL}/emprestimos/ativos`).then(r => r.json());
+
+        document.getElementById('total-usuarios').textContent = usuarios.length;
+        document.getElementById('total-livros').textContent = (livros || []).filter(l => l.disponivel).length;
+        document.getElementById('total-emprestimos').textContent = (emprestimos || []).length;
+      } catch (error) {
+        console.error('Erro ao carregar estatísticas:', error);
+      }
+    }
+
+    // -----------------------
+    // Usuários
+    // -----------------------
+    async function carregarUsuarios() {
+      try {
+        const response = await fetch(`${API_URL}/usuarios`);
+        const usuarios = await response.json();
+        const tbody = document.querySelector('#usuarios-table tbody');
+        tbody.innerHTML = '';
+        usuarios.forEach(usuario => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>${usuario.id_usuario}</td>
+            <td>${usuario.nome}</td>
+            <td>${usuario.matricula}</td>
+            <td>${usuario.email}</td>
+            <td>${usuario.telefone || '-'}</td>
+            <td>
+              <button class="btn-delete" onclick="deletarUsuario(${usuario.id_usuario})">Deletar</button>
+            </td>
+          `;
+          tbody.appendChild(tr);
         });
+      } catch (error) {
+        console.error('Erro ao carregar usuários:', error);
+        alert('Erro ao carregar usuários');
+      }
+    }
 
-        
-        document.addEventListener('DOMContentLoaded', () => {
-            carregarEstatisticas();
+    document.getElementById('form-usuario').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const nome = document.getElementById('usuario-nome').value;
+      const matricula = document.getElementById('usuario-matricula').value;
+      const email = document.getElementById('usuario-email').value;
+      const telefone = document.getElementById('usuario-telefone').value;
+      try {
+        const response = await fetch(`${API_URL}/usuarios`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nome, matricula, email, telefone })
         });
-
-        
-
-        async function carregarEstatisticas() {
-            try {
-                const usuarios = await fetch(`${API_URL}/usuarios`).then(r => r.json());
-                const livros = await fetch(`${API_URL}/livros`).then(r => r.json());
-                const emprestimos = await fetch(`${API_URL}/emprestimos/ativos`).then(r => r.json());
-
-                document.getElementById('total-usuarios').textContent = usuarios.length;
-                document.getElementById('total-livros').textContent = livros.filter(l => l.disponivel).length;
-                document.getElementById('total-emprestimos').textContent = emprestimos.length;
-            } catch (error) {
-                console.error('Erro ao carregar estatísticas:', error);
-            }
+        if (response.ok) {
+          alert('Usuário criado com sucesso!');
+          document.getElementById('form-usuario').reset();
+          carregarUsuarios();
+        } else {
+          const error = await response.json();
+          alert(`Erro: ${error.erro || 'Não foi possível criar usuário'}`);
         }
+      } catch (error) {
+        console.error('Erro ao criar usuário:', error);
+        alert('Erro ao criar usuário');
+      }
+    });
 
-       
-
-        async function carregarUsuarios() {
-            try {
-                const response = await fetch(`${API_URL}/usuarios`);
-                const usuarios = await response.json();
-                
-                const tbody = document.querySelector('#usuarios-table tbody');
-                tbody.innerHTML = '';
-
-                usuarios.forEach(usuario => {
-                    const tr = document.createElement('tr');
-                    tr.innerHTML = `
-                        <td>${usuario.id_usuario}</td>
-                        <td>${usuario.nome}</td>
-                        <td>${usuario.matricula}</td>
-                        <td>${usuario.email}</td>
-                        <td>${usuario.telefone || '-'}</td>
-                        <td>
-                            <button class="btn-edit" onclick="editarUsuario(${usuario.id_usuario})">Editar</button>
-                            <button class="btn-delete" onclick="deletarUsuario(${usuario.id_usuario})">Deletar</button>
-                        </td>
-                    `;
-                    tbody.appendChild(tr);
-                });
-            } catch (error) {
-                console.error('Erro ao carregar usuários:', error);
-                alert('Erro ao carregar usuários');
-            }
+    async function deletarUsuario(id) {
+      if (!confirm('Tem certeza que deseja deletar este usuário?')) return;
+      try {
+        const response = await fetch(`${API_URL}/usuarios/${id}`, { method: 'DELETE' });
+        if (response.ok) {
+          alert('Usuário deletado com sucesso!');
+          carregarUsuarios();
         }
+      } catch (error) {
+        console.error('Erro ao deletar usuário:', error);
+        alert('Erro ao deletar usuário');
+      }
+    }
 
-        document.getElementById('form-usuario').addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const nome = document.getElementById('usuario-nome').value;
-            const matricula = document.getElementById('usuario-matricula').value;
-            const email = document.getElementById('usuario-email').value;
-            const telefone = document.getElementById('usuario-telefone').value;
-
-            try {
-                const response = await fetch(`${API_URL}/usuarios`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ nome, matricula, email, telefone })
-                });
-
-                if (response.ok) {
-                    alert('Usuário criado com sucesso!');
-                    document.getElementById('form-usuario').reset();
-                    carregarUsuarios();
-                } else {
-                    const error = await response.json();
-                    alert(`Erro: ${error.erro}`);
-                }
-            } catch (error) {
-                console.error('Erro ao criar usuário:', error);
-                alert('Erro ao criar usuário');
-            }
+    // -----------------------
+    // Livros
+    // -----------------------
+    async function carregarLivros() {
+      try {
+        const response = await fetch(`${API_URL}/livros`);
+        const livros = await response.json();
+        const tbody = document.querySelector('#livros-table tbody');
+        tbody.innerHTML = '';
+        livros.forEach(livro => {
+          const disponivel = livro.disponivel ? '<span class="badge badge-disponivel">Disponível</span>' : '<span class="badge badge-indisponivel">Indisponível</span>';
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>${livro.id_livro}</td>
+            <td>${livro.titulo}</td>
+            <td>${livro.autor}</td>
+            <td>${livro.ano_publicacao || '-'}</td>
+            <td>${livro.categoria || '-'}</td>
+            <td>${disponivel}</td>
+            <td>
+              <button class="btn-edit" onclick="editarLivro(${livro.id_livro})">Editar</button>
+              <button class="btn-delete" onclick="deletarLivro(${livro.id_livro})">Deletar</button>
+            </td>
+          `;
+          tbody.appendChild(tr);
         });
+        carregarLivrosSelect();
+      } catch (error) {
+        console.error('Erro ao carregar livros:', error);
+        alert('Erro ao carregar livros');
+      }
+    }
 
-        async function deletarUsuario(id) {
-            if (!confirm('Tem certeza que deseja deletar este usuário?')) return;
-
-            try {
-                const response = await fetch(`${API_URL}/usuarios/${id}`, { method: 'DELETE' });
-                if (response.ok) {
-                    alert('Usuário deletado com sucesso!');
-                    carregarUsuarios();
-                }
-            } catch (error) {
-                console.error('Erro ao deletar usuário:', error);
-                alert('Erro ao deletar usuário');
-            }
-        }
-
-        function editarUsuario(id) {
-            alert('Funcionalidade de edição será implementada em breve!');
-        }
-
-        // ==================== FUNÇÕES DE LIVROS ====================
-
-        async function carregarLivros() {
-            try {
-                const response = await fetch(`${API_URL}/livros`);
-                const livros = await response.json();
-                
-                const tbody = document.querySelector('#livros-table tbody');
-                tbody.innerHTML = '';
-
-                livros.forEach(livro => {
-                    const tr = document.createElement('tr');
-                    const disponivel = livro.disponivel ? 
-                        '<span class="badge badge-disponivel">Disponível</span>' : 
-                        '<span class="badge badge-indisponivel">Indisponível</span>';
-                    
-                    tr.innerHTML = `
-                        <td>${livro.id_livro}</td>
-                        <td>${livro.titulo}</td>
-                        <td>${livro.autor}</td>
-                        <td>${livro.ano_publicacao || '-'}</td>
-                        <td>${livro.categoria || '-'}</td>
-                        <td>${disponivel}</td>
-                        <td>
-                            <button class="btn-edit" onclick="editarLivro(${livro.id_livro})">Editar</button>
-                            <button class="btn-delete" onclick="deletarLivro(${livro.id_livro})">Deletar</button>
-                        </td>
-                    `;
-                    tbody.appendChild(tr);
-                });
-
-                // Carregar livros no select de empréstimos
-                carregarLivrosSelect();
-            } catch (error) {
-                console.error('Erro ao carregar livros:', error);
-                alert('Erro ao carregar livros');
-            }
-        }
-
-        document.getElementById('form-livro').addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const titulo = document.getElementById('livro-titulo').value;
-            const autor = document.getElementById('livro-autor').value;
-            const ano_publicacao = document.getElementById('livro-ano').value;
-            const categoria = document.getElementById('livro-categoria').value;
-            
-
-            try {
-                const response = await fetch(`${API_URL}/livros`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ titulo, autor, ano_publicacao, categoria })
-                });
-
-                if (response.ok) {
-                    alert('Livro criado com sucesso!');
-                    document.getElementById('form-livro').reset();
-                    carregarLivros();
-                } else {
-                    const error = await response.json();
-                    alert(`Erro: ${error.erro}`);
-                }
-            } catch (error) {
-                console.error('Erro ao criar livro:', error);
-                alert('Erro ao criar livro');
-            }
+    document.getElementById('form-livro').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const titulo = document.getElementById('livro-titulo').value;
+      const autor = document.getElementById('livro-autor').value;
+      const ano_publicacao = document.getElementById('livro-ano').value;
+      const categoria = document.getElementById('livro-categoria').value;
+      try {
+        const response = await fetch(`${API_URL}/livros`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ titulo, autor, ano_publicacao, categoria })
         });
-
-        async function deletarLivro(id) {
-            if (!confirm('Tem certeza que deseja deletar este livro?')) return;
-
-            try {
-                const response = await fetch(`${API_URL}/livros/${id}`, { method: 'DELETE' });
-                if (response.ok) {
-                    alert('Livro deletado com sucesso!');
-                    carregarLivros();
-                }
-            } catch (error) {
-                console.error('Erro ao deletar livro:', error);
-                alert('Erro ao deletar livro');
-            }
+        if (response.ok) {
+          alert('Livro criado com sucesso!');
+          document.getElementById('form-livro').reset();
+          carregarLivros();
+        } else {
+          const error = await response.json();
+          alert(`Erro: ${error.erro || 'Não foi possível criar livro'}`);
         }
+      } catch (error) {
+        console.error('Erro ao criar livro:', error);
+        alert('Erro ao criar livro');
+      }
+    });
 
-        function editarLivro(id) {
-            alert('Funcionalidade de edição será implementada em breve!');
+    async function deletarLivro(id) {
+      if (!confirm('Tem certeza que deseja deletar este livro?')) return;
+      try {
+        const response = await fetch(`${API_URL}/livros/${id}`, { method: 'DELETE' });
+        if (response.ok) {
+          alert('Livro deletado com sucesso!');
+          carregarLivros();
         }
+      } catch (error) {
+        console.error('Erro ao deletar livro:', error);
+        alert('Erro ao deletar livro');
+      }
+    }
 
-        async function carregarLivrosSelect() {
-            try {
-                const response = await fetch(`${API_URL}/livros`);
-                const livros = await response.json();
-                
-                const select = document.getElementById('emprestimo-livro');
-                select.innerHTML = '<option value="">Selecione um Livro</option>';
-
-                livros.filter(l => l.disponivel).forEach(livro => {
-                    const option = document.createElement('option');
-                    option.value = livro.id_livro;
-                    option.textContent = livro.titulo;
-                    select.appendChild(option);
-                });
-            } catch (error) {
-                console.error('Erro ao carregar livros para select:', error);
-            }
-        }
-
-        
-
-        async function carregarEmprestimos() {
-            try {
-                const response = await fetch(`${API_URL}/emprestimos`);
-                const emprestimos = await response.json();
-                
-                const tbody = document.querySelector('#emprestimos-table tbody');
-                tbody.innerHTML = '';
-
-                emprestimos.forEach(emp => {
-                    const tr = document.createElement('tr');
-                    const dataDevolucao = emp.data_devolucao ? emp.data_devolucao : '-';
-                    const multa = emp.multa ? `R$ ${parseFloat(emp.multa).toFixed(2)}` : 'R$ 0,00';
-                    const btnDevolver = emp.data_devolucao ? '' : 
-                        `<button class="btn-devolver" onclick="devolverLivro(${emp.id_emprestimo})">Devolver</button>`;
-                    
-                    tr.innerHTML = `
-                        <td>${emp.id_emprestimo}</td>
-                        <td>${emp.usuario_nome}</td>
-                        <td>${emp.livro_titulo}</td>
-                        <td>${emp.data_retirada}</td>
-                        <td>${emp.data_prevista_devolucao}</td>
-                        <td>${dataDevolucao}</td>
-                        <td>${multa}</td>
-                        <td>
-                            ${btnDevolver}
-                            <button class="btn-delete" onclick="deletarEmprestimo(${emp.id_emprestimo})">Deletar</button>
-                        </td>
-                    `;
-                    tbody.appendChild(tr);
-                });
-
-                
-                carregarUsuariosSelect();
-            } catch (error) {
-                console.error('Erro ao carregar empréstimos:', error);
-                alert('Erro ao carregar empréstimos');
-            }
-        }
-
-        async function carregarUsuariosSelect() {
-            try {
-                const response = await fetch(`${API_URL}/usuarios`);
-                const usuarios = await response.json();
-                
-                const select = document.getElementById('emprestimo-usuario');
-                select.innerHTML = '<option value="">Selecione um Usuário</option>';
-
-                usuarios.forEach(usuario => {
-                    const option = document.createElement('option');
-                    option.value = usuario.id_usuario;
-                    option.textContent = usuario.nome;
-                    select.appendChild(option);
-                });
-            } catch (error) {
-                console.error('Erro ao carregar usuários para select:', error);
-            }
-        }
-
-        document.getElementById('form-emprestimo').addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const id_usuario = document.getElementById('emprestimo-usuario').value;
-            const id_livro = document.getElementById('emprestimo-livro').value;
-            const dias_emprestimo = document.getElementById('emprestimo-dias').value;
-
-            try {
-                const response = await fetch(`${API_URL}/emprestimos`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ id_usuario, id_livro, dias_emprestimo })
-                });
-
-                if (response.ok) {
-                    alert('Empréstimo realizado com sucesso!');
-                    document.getElementById('form-emprestimo').reset();
-                    carregarEmprestimos();
-                    carregarLivros();
-                    carregarEstatisticas();
-                } else {
-                    const error = await response.json();
-                    alert(`Erro: ${error.erro}`);
-                }
-            } catch (error) {
-                console.error('Erro ao realizar empréstimo:', error);
-                alert('Erro ao realizar empréstimo');
-            }
+    async function carregarLivrosSelect() {
+      try {
+        const response = await fetch(`${API_URL}/livros`);
+        const livros = await response.json();
+        const select = document.getElementById('emprestimo-livro');
+        select.innerHTML = '<option value="">Selecione um Livro</option>';
+        (livros || []).filter(l => l.disponivel).forEach(livro => {
+          const option = document.createElement('option');
+          option.value = livro.id_livro;
+          option.textContent = livro.titulo;
+          select.appendChild(option);
         });
+      } catch (error) {
+        console.error('Erro ao carregar livros para select:', error);
+      }
+    }
 
-        async function devolverLivro(id) {
+    // -----------------------
+    // Empréstimos
+    // -----------------------
+    async function carregarEmprestimos() {
+      try {
+        const response = await fetch(`${API_URL}/emprestimos`);
+        const emprestimos = await response.json();
+        const tbody = document.querySelector('#emprestimos-table tbody');
+        tbody.innerHTML = '';
+
+        // Usamos for..of para poder await dentro do loop (buscar multa quando existir)
+        for (const emp of (emprestimos || [])) {
+          let dataDevolucao = emp.data_devolucao ? emp.data_devolucao : '-';
+          let multaDisplay = 'R$ 0,00';
+
+          // O DAO atual coloca id_multa em emprestimo (não o valor). Se existir id_multa, buscamos o valor.
+          const idMultaFromEmp = emp.id_multa || emp.id_multa === 0 ? emp.id_multa : (emp.multa ? emp.multa : null);
+          if (idMultaFromEmp) {
             try {
-                const response = await fetch(`${API_URL}/emprestimos/${id}/devolver`, {
-                    method: 'PUT',
-                    headers: { 'Content-Type': 'application/json' }
-                });
-
-                if (response.ok) {
-                    const result = await response.json();
-                    alert(`Livro devolvido com sucesso!\nMulta: R$ ${parseFloat(result.multa).toFixed(2)}`);
-                    carregarEmprestimos();
-                    carregarLivros();
-                    carregarEstatisticas();
+              const r = await fetch(`${API_URL}/multas/${idMultaFromEmp}`);
+              if (r.ok) {
+                const multaObj = await r.json();
+                if (multaObj && (multaObj.valor !== undefined && multaObj.valor !== null)) {
+                  multaDisplay = `R$ ${parseFloat(multaObj.valor).toFixed(2)}`;
                 }
-            } catch (error) {
-                console.error('Erro ao devolver livro:', error);
-                alert('Erro ao devolver livro');
+              }
+            } catch (err) {
+              // falhar ao puxar multa não é crítico, deixamos R$ 0,00
+              console.warn('Não foi possível buscar multa do empréstimo', idMultaFromEmp, err);
             }
+          } else if (emp.multa !== undefined && emp.multa !== null) {
+            // se por acaso o campo numérico 'multa' existir no próprio empr.
+            multaDisplay = `R$ ${parseFloat(emp.multa).toFixed(2)}`;
+          }
+
+          const btnDevolver = emp.data_devolucao ? '' : `<button class="btn-devolver" onclick="devolverLivro(${emp.id_emprestimo})">Devolver</button>`;
+
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>${emp.id_emprestimo}</td>
+            <td>${emp.usuario_nome || emp.usuario || '-'}</td>
+            <td>${emp.livro_titulo || emp.titulo || '-'}</td>
+            <td>${emp.data_retirada}</td>
+            <td>${emp.data_prevista_devolucao}</td>
+            <td>${dataDevolucao}</td>
+            <td>${multaDisplay}</td>
+            <td>
+              ${btnDevolver}
+              <button class="btn-delete" onclick="deletarEmprestimo(${emp.id_emprestimo})">Deletar</button>
+            </td>
+          `;
+          tbody.appendChild(tr);
         }
 
-        async function deletarEmprestimo(id) {
-            if (!confirm('Tem certeza que deseja deletar este empréstimo?')) return;
+        carregarUsuariosSelect();
+      } catch (error) {
+        console.error('Erro ao carregar empréstimos:', error);
+        alert('Erro ao carregar empréstimos');
+      }
+    }
 
-            try {
-                const response = await fetch(`${API_URL}/emprestimos/${id}`, { method: 'DELETE' });
-                if (response.ok) {
-                    alert('Empréstimo deletado com sucesso!');
-                    carregarEmprestimos();
-                }
-            } catch (error) {
-                console.error('Erro ao deletar empréstimo:', error);
-                alert('Erro ao deletar empréstimo');
-            }
+    async function carregarUsuariosSelect() {
+      try {
+        const response = await fetch(`${API_URL}/usuarios`);
+        const usuarios = await response.json();
+        const select = document.getElementById('emprestimo-usuario');
+        select.innerHTML = '<option value="">Selecione um Usuário</option>';
+        (usuarios || []).forEach(usuario => {
+          const option = document.createElement('option');
+          option.value = usuario.id_usuario;
+          option.textContent = usuario.nome;
+          select.appendChild(option);
+        });
+      } catch (error) {
+        console.error('Erro ao carregar usuários para select:', error);
+      }
+    }
+
+    document.getElementById('form-emprestimo').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const id_usuario = document.getElementById('emprestimo-usuario').value;
+      const id_livro = document.getElementById('emprestimo-livro').value;
+      const dias_emprestimo = document.getElementById('emprestimo-dias').value;
+      try {
+        const response = await fetch(`${API_URL}/emprestimos`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id_usuario, id_livro, dias_emprestimo })
+        });
+        if (response.ok) {
+          alert('Empréstimo realizado com sucesso!');
+          document.getElementById('form-emprestimo').reset();
+          carregarEmprestimos();
+          carregarLivros();
+          carregarEstatisticas();
+        } else {
+          const error = await response.json();
+          alert(`Erro: ${error.erro || 'Não foi possível realizar empréstimo'}`);
         }
-        fetch("http://localhost:3000/livros")
-  .then(res => res.json())
-  .then(data => console.log(data));
-    </script>
+      } catch (error) {
+        console.error('Erro ao realizar empréstimo:', error);
+        alert('Erro ao realizar empréstimo');
+      }
+    });
+
+    async function devolverLivro(id) {
+      try {
+        const response = await fetch(`${API_URL}/emprestimos/${id}/devolver`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' }
+        });
+        if (response.ok) {
+          const result = await response.json();
+          // se backend devolver multa numérica, usamos; caso contrário tentar recarregar empréstimos
+          const multaNum = result && result.multa !== undefined ? result.multa : 0;
+          alert(`Livro devolvido com sucesso!\nMulta: R$ ${parseFloat(multaNum).toFixed(2)}`);
+          carregarEmprestimos();
+          carregarLivros();
+          carregarEstatisticas();
+        } else {
+          const err = await response.json();
+          alert(`Erro ao devolver: ${err.erro || 'Erro desconhecido'}`);
+        }
+      } catch (error) {
+        console.error('Erro ao devolver livro:', error);
+        alert('Erro ao devolver livro');
+      }
+    }
+
+    async function deletarEmprestimo(id) {
+      if (!confirm('Tem certeza que deseja deletar este empréstimo?')) return;
+      try {
+        const response = await fetch(`${API_URL}/emprestimos/${id}`, { method: 'DELETE' });
+        if (response.ok) {
+          alert('Empréstimo deletado com sucesso!');
+          carregarEmprestimos();
+        }
+      } catch (error) {
+        console.error('Erro ao deletar empréstimo:', error);
+        alert('Erro ao deletar empréstimo');
+      }
+    }
+
+    // -----------------------
+    // Multas
+    // -----------------------
+    document.getElementById('form-multa').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const id = document.getElementById('multa-id').value;
+      const id_emprestimo = document.getElementById('multa-emprestimo-id').value;
+      const valor = document.getElementById('multa-valor').value;
+      const pago = document.getElementById('multa-pago').checked;
+
+      const url = id ? `${API_URL}/multas/${id}` : `${API_URL}/multas`;
+      const method = id ? 'PUT' : 'POST';
+
+      try {
+        const response = await fetch(url, {
+          method,
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id_emprestimo, valor, pago })
+        });
+        if (response.ok) {
+          alert(`Multa ${id ? 'atualizada' : 'cadastrada'} com sucesso!`);
+          document.getElementById('form-multa').reset();
+          document.getElementById('multa-id').value = '';
+          carregarMultas();
+        } else {
+          const error = await response.json();
+          alert(`Erro: ${error.erro || 'Não foi possível salvar a multa.'}`);
+        }
+      } catch (error) {
+        console.error('Erro ao salvar multa:', error);
+        alert('Ocorreu um erro na comunicação com o servidor.');
+      }
+    });
+
+    document.getElementById('btn-limpar-form-multa').addEventListener('click', () => {
+      document.getElementById('form-multa').reset();
+      document.getElementById('multa-id').value = '';
+    });
+
+    async function editarMulta(id) {
+      try {
+        const response = await fetch(`${API_URL}/multas/${id}`);
+        if (!response.ok) throw new Error('Multa não encontrada');
+        const multa = await response.json();
+
+        // o endpoint do DAO/Service deve retornar um objeto com propriedades: id, id_emprestimo, valor, pago
+        document.getElementById('multa-id').value = multa.id !== undefined ? multa.id : (multa.id_multa || '');
+        document.getElementById('multa-emprestimo-id').value = multa.id_emprestimo || multa.emprestimo || '';
+        document.getElementById('multa-valor').value = multa.valor || '';
+        // pode ser 0/1 ou boolean
+        document.getElementById('multa-pago').checked = Boolean(multa.pago || multa.pago === 1 || multa.pago === true);
+
+        document.getElementById('form-multa').scrollIntoView({ behavior: 'smooth' });
+      } catch (error) {
+        console.error('Erro ao buscar dados da multa:', error);
+        alert('Não foi possível carregar os dados para edição.');
+      }
+    }
+
+    async function pagarMulta(id) {
+      if (!confirm('Deseja confirmar o pagamento desta multa?')) return;
+      try {
+        const response = await fetch(`${API_URL}/multas/${id}/pagar`, { method: 'PUT' });
+        if (response.ok) {
+          alert('Pagamento da multa registrado com sucesso!');
+          carregarMultas();
+        } else {
+          const err = await response.json();
+          alert(`Erro ao registrar pagamento: ${err.erro || 'Erro desconhecido'}`);
+        }
+      } catch (error) {
+        console.error('Erro ao pagar multa:', error);
+        alert('Erro ao pagar multa');
+      }
+    }
+
+    async function deletarMulta(id) {
+      if (!confirm('Tem certeza que deseja deletar esta multa?')) return;
+      try {
+        const response = await fetch(`${API_URL}/multas/${id}`, { method: 'DELETE' });
+        if (response.ok) {
+          alert('Multa deletada com sucesso!');
+          carregarMultas();
+        } else {
+          const err = await response.json();
+          alert(`Erro ao deletar multa: ${err.erro || 'Erro desconhecido'}`);
+        }
+      } catch (error) {
+        console.error('Erro ao deletar multa:', error);
+        alert('Erro ao deletar multa');
+      }
+    }
+
+    async function carregarMultas() {
+      try {
+        const response = await fetch(`${API_URL}/multas`);
+        const multas = await response.json();
+        const tbody = document.querySelector('#multas-table tbody');
+        tbody.innerHTML = '';
+
+        (multas || []).forEach(multa => {
+          // normalize fields
+          const id = multa.id !== undefined ? multa.id : (multa.id_multa || multa.idMulta || '');
+          const id_emprestimo = multa.id_emprestimo || multa.emprestimo || '-';
+          const usuario = multa.usuario || multa.usuario_nome || '-';
+          const valor = multa.valor !== undefined ? parseFloat(multa.valor).toFixed(2) : '0.00';
+          const pago = multa.pago === 1 || multa.pago === true || multa.pago === 'true';
+
+          const status = pago ? '<span class="badge badge-disponivel">Paga</span>' : '<span class="badge badge-indisponivel">Pendente</span>';
+          const valorFormatado = `R$ ${valor}`;
+
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>${id}</td>
+            <td>${usuario}</td>
+            <td>${id_emprestimo}</td>
+            <td>${valorFormatado}</td>
+            <td>${status}</td>
+            <td class="actions">
+              <button class="btn-edit" onclick="editarMulta(${id})">Editar</button>
+              ${!pago ? `<button class="btn-devolver" onclick="pagarMulta(${id})">Pagar</button>` : ''}
+              <button class="btn-delete" onclick="deletarMulta(${id})">Deletar</button>
+            </td>
+          `;
+          tbody.appendChild(tr);
+        });
+      } catch (error) {
+        console.error('Erro ao carregar multas:', error);
+        // Não dar alert redundante, apenas log
+      }
+    }
+  </script>
 </body>
 </html>

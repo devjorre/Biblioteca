@@ -335,3 +335,30 @@
                 padding: 8px;
             }
         }
+      .badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+        }
+        .badge-disponivel, .badge-pago {
+            background-color: #2ecc71; /* Verde */
+        }
+        .badge-indisponivel, .badge-pendente {
+            background-color: #e74c3c; /* Vermelho */
+        }
+        .table-container td.actions {
+            display: flex;
+            flex-wrap: wrap; /* Permite que os botões quebrem a linha em telas pequenas */
+            gap: 5px; /* Espaçamento entre os botões */
+        }
+        .form-group-checkbox {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .form-group-checkbox label {
+            margin-right: 10px;
+            font-weight: bold;
+        }
