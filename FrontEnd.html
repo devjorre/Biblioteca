@@ -129,7 +129,7 @@
             <input type="number" id="multa-emprestimo-id" placeholder="ID do Empréstimo" required>
             <input type="number" step="0.01" id="multa-valor" placeholder="Valor da Multa" required>
             <label style="margin-top: 10px;">
-              <input type="checkbox" id="multa-pago"> Multa Paga
+            
             </label>
             <button type="submit" class="btn-primary">Salvar Multa</button>
             <button type="button" id="btn-limpar-form-multa" class="btn-secondary">Limpar</button>
@@ -177,7 +177,7 @@
       carregarEstatisticas();
     });
 
-    // Estatísticas
+    
     async function carregarEstatisticas() {
       try {
         const usuarios = await fetch(`${API_URL}/usuarios`).then(r => r.json());
@@ -553,22 +553,7 @@
       }
     }
 
-    async function pagarMulta(id) {
-      if (!confirm('Deseja confirmar o pagamento desta multa?')) return;
-      try {
-        const response = await fetch(`${API_URL}/multas/${id}/pagar`, { method: 'PUT' });
-        if (response.ok) {
-          alert('Pagamento da multa registrado com sucesso!');
-          carregarMultas();
-        } else {
-          const err = await response.json();
-          alert(`Erro ao registrar pagamento: ${err.erro || 'Erro desconhecido'}`);
-        }
-      } catch (error) {
-        console.error('Erro ao pagar multa:', error);
-        alert('Erro ao pagar multa');
-      }
-    }
+
 
     async function deletarMulta(id) {
       if (!confirm('Tem certeza que deseja deletar esta multa?')) return;
@@ -595,7 +580,7 @@
         tbody.innerHTML = '';
 
         (multas || []).forEach(multa => {
-          // normalize fields
+          
           const id = multa.id !== undefined ? multa.id : (multa.id_multa || multa.idMulta || '');
           const id_emprestimo = multa.id_emprestimo || multa.emprestimo || '-';
           const usuario = multa.usuario || multa.usuario_nome || '-';
@@ -613,7 +598,7 @@
             <td>${valorFormatado}</td>
             <td>${status}</td>
             <td class="actions">
-              <button class="btn-edit" onclick="editarMulta(${id})">Editar</button>
+             
               ${!pago ? `<button class="btn-devolver" onclick="pagarMulta(${id})">Pagar</button>` : ''}
               <button class="btn-delete" onclick="deletarMulta(${id})">Deletar</button>
             </td>
@@ -622,9 +607,55 @@
         });
       } catch (error) {
         console.error('Erro ao carregar multas:', error);
-        // Não dar alert redundante, apenas log
+        
       }
     }
+    let multaSelecionada = null;
+
+function pagarMulta(id) {
+    multaSelecionada = id;
+    document.getElementById("modalPagamento").style.display = "block";
+}
+
+function fecharModalPagamento() {
+    multaSelecionada = null;
+    document.getElementById("modalPagamento").style.display = "none";
+}
+
+async function confirmarPagamento() {
+    const forma = document.getElementById("formaPagamento").value;
+
+    const resposta = await fetch(`http://localhost:3000/api/multas/${multaSelecionada}/pagar`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ forma_pagamento: forma })
+    });
+
+    const dados = await resposta.json();
+
+    alert(dados.mensagem || "Pagamento realizado!");
+
+    fecharModalPagamento();
+    carregarMultas(); 
+}
+
   </script>
+  <div id="modalPagamento" class="modal" style="display:none;">
+    <div class="modal-content">
+        <h3>Selecionar Forma de Pagamento</h3>
+
+        <select id="formaPagamento">
+            <option value="DINHEIRO">Dinheiro</option>
+            <option value="PIX">PIX</option>
+            <option value="CARTAO">Cartão</option>
+        </select>
+
+        <div style="margin-top:15px;">
+            <button onclick="confirmarPagamento()">Confirmar</button>
+            <button onclick="fecharModalPagamento()">Cancelar</button>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

@@ -3,6 +3,10 @@ class MultaService {
   constructor(multaDAO) {
     this.multaDAO = multaDAO;
   }
+async pagar(id, forma_pagamento) {
+    if (!forma_pagamento) throw new Error("Forma de pagamento é obrigatória");
+    return await this.multaDAO.pagar(id, forma_pagamento);
+}
 
   async pagar(id) {
     const result = await this.multaDAO.pagar(id);
@@ -43,5 +47,6 @@ class MultaService {
     return result;
   }
 }
+
 
 module.exports = MultaService;

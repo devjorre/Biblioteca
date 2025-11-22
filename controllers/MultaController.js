@@ -3,6 +3,17 @@ class MultaController {
   constructor(multaService) {
     this.multaService = multaService;
   }
+async pagar(req, res) {
+    try {
+        const { id } = req.params;
+        const { forma_pagamento } = req.body;
+
+        const result = await this.multaService.pagar(id, forma_pagamento);
+        res.json(result);
+    } catch (err) {
+        res.status(400).json({ erro: err.message });
+    }
+}
 
   async pagar(req, res) {
     try {
@@ -60,5 +71,6 @@ class MultaController {
     }
   }
 }
+
 
 module.exports = MultaController;

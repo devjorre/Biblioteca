@@ -3,6 +3,19 @@ class MultaDAO {
   constructor(pool) {
     this.pool = pool;
   }
+  async pagar(id, forma) {
+    const conn = await this.pool.getConnection();
+    try {
+        const [result] = await conn.query(
+            `UPDATE multas SET pago = TRUE, forma_pagamento = ? WHERE id = ?`,
+            [forma, id]
+        );
+        return result;
+    } finally {
+        conn.release();
+    }
+}
+
 
   async listarTodas() {
     const sql = `
