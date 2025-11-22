@@ -192,9 +192,7 @@
       }
     }
 
-    // -----------------------
-    // Usuários
-    // -----------------------
+
     async function carregarUsuarios() {
       try {
         const response = await fetch(`${API_URL}/usuarios`);
@@ -261,9 +259,7 @@
       }
     }
 
-    // -----------------------
-    // Livros
-    // -----------------------
+
     async function carregarLivros() {
       try {
         const response = await fetch(`${API_URL}/livros`);
@@ -351,9 +347,7 @@
       }
     }
 
-    // -----------------------
-    // Empréstimos
-    // -----------------------
+
     async function carregarEmprestimos() {
       try {
         const response = await fetch(`${API_URL}/emprestimos`);
@@ -464,7 +458,7 @@
         });
         if (response.ok) {
           const result = await response.json();
-          // se backend devolver multa numérica, usamos; caso contrário tentar recarregar empréstimos
+    
           const multaNum = result && result.multa !== undefined ? result.multa : 0;
           alert(`Livro devolvido com sucesso!\nMulta: R$ ${parseFloat(multaNum).toFixed(2)}`);
           carregarEmprestimos();
@@ -494,9 +488,7 @@
       }
     }
 
-    // -----------------------
-    // Multas
-    // -----------------------
+
     document.getElementById('form-multa').addEventListener('submit', async (e) => {
       e.preventDefault();
       const id = document.getElementById('multa-id').value;
@@ -539,11 +531,11 @@
         if (!response.ok) throw new Error('Multa não encontrada');
         const multa = await response.json();
 
-        // o endpoint do DAO/Service deve retornar um objeto com propriedades: id, id_emprestimo, valor, pago
+       
         document.getElementById('multa-id').value = multa.id !== undefined ? multa.id : (multa.id_multa || '');
         document.getElementById('multa-emprestimo-id').value = multa.id_emprestimo || multa.emprestimo || '';
         document.getElementById('multa-valor').value = multa.valor || '';
-        // pode ser 0/1 ou boolean
+       
         document.getElementById('multa-pago').checked = Boolean(multa.pago || multa.pago === 1 || multa.pago === true);
 
         document.getElementById('form-multa').scrollIntoView({ behavior: 'smooth' });
