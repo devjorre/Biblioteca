@@ -1,5 +1,7 @@
         
-        * {
+     
+     
+     * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -236,7 +238,7 @@
             background-color: #f9f9f9;
         }
 
-        /* ACTION BUTTONS */
+        
         .btn-edit, .btn-delete, .btn-devolver {
             padding: 6px 12px;
             margin-right: 5px;
@@ -274,7 +276,7 @@
             background-color: #0b7dda;
         }
 
-        /* STATUS BADGE */
+        
         .badge {
             padding: 4px 8px;
             border-radius: 3px;
@@ -292,7 +294,7 @@
             color: white;
         }
 
-        /* FOOTER */
+        
         .footer {
             background-color: #333;
             color: white;
@@ -301,7 +303,7 @@
             margin-top: 30px;
         }
 
-        /* RESPONSIVE */
+        
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 20px;
@@ -343,15 +345,15 @@
             color: white;
         }
         .badge-disponivel, .badge-pago {
-            background-color: #2ecc71; /* Verde */
+            background-color: #2ecc71; 
         }
         .badge-indisponivel, .badge-pendente {
-            background-color: #e74c3c; /* Vermelho */
+            background-color: #e74c3c; 
         }
         .table-container td.actions {
             display: flex;
-            flex-wrap: wrap; /* Permite que os botões quebrem a linha em telas pequenas */
-            gap: 5px; /* Espaçamento entre os botões */
+            flex-wrap: wrap; 
+            gap: 5px; 
         }
         .form-group-checkbox {
             display: flex;
@@ -381,4 +383,33 @@
     border-radius: 10px;
     width: 300px;
     text-align: center;
+}
+.search-container {
+  margin: 15px 0;
+  display: flex;
+  gap: 10px;
+}
+
+.search-container input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+.btn-secondary {
+    background-color: #95a5a6;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #7f8c8d;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(149, 165, 166, 0.3);
 }

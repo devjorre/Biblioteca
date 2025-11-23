@@ -1,4 +1,4 @@
-// controllers/MultaController.js
+
 class MultaController {
   constructor(multaService) {
     this.multaService = multaService;

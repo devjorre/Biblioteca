@@ -5,7 +5,7 @@ class LivroService {
     this.livroDAO = livroDAO;
   }
 
-  // Listar todos os livros
+ 
   async listarTodos() {
     try {
       return await this.livroDAO.listarTodos();
@@ -14,7 +14,7 @@ class LivroService {
     }
   }
 
-  // Listar apenas livros disponíveis
+ 
   async listarDisponiveis() {
     try {
       return await this.livroDAO.listarDisponiveis();
@@ -23,7 +23,7 @@ class LivroService {
     }
   }
 
-  // Buscar livro por ID
+
   async buscarPorId(id) {
     try {
       if (!id || isNaN(id)) {
@@ -41,13 +41,13 @@ class LivroService {
     }
   }
 
-  // Criar novo livro
+ 
   async criar(dados) {
     try {
-      // Validar dados
+     
       Livro.validar(dados.titulo, dados.autor);
       
-      // Criar novo livro
+      
       const livro = new Livro(
         null,
         dados.titulo,
@@ -66,21 +66,21 @@ class LivroService {
     }
   }
 
-  // Atualizar livro
+ 
   async atualizar(id, dados) {
     try {
-      // Validar ID
+      
       if (!id || isNaN(id)) {
         throw new Error('ID inválido');
       }
       
-      // Verificar se livro existe
+      
       const livro = await this.livroDAO.buscarPorId(id);
       if (!livro) {
         throw new Error('Livro não encontrado');
       }
       
-      // Atualizar dados
+      
       livro.titulo = dados.titulo || livro.titulo;
       livro.autor = dados.autor || livro.autor;
       livro.categoria = dados.categoria || livro.categoria;

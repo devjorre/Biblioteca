@@ -3,7 +3,7 @@ class EmprestimoController {
     this.emprestimoService = emprestimoService;
   }
 
-  // Listar todos os empréstimos
+
   async listar(req, res) {
     try {
       const emprestimos = await this.emprestimoService.listarTodos();
@@ -14,7 +14,7 @@ class EmprestimoController {
     }
   }
 
-  // Listar empréstimos ativos
+
   async listarAtivos(req, res) {
     try {
       const emprestimos = await this.emprestimoService.listarAtivos();
@@ -25,7 +25,7 @@ class EmprestimoController {
     }
   }
 
-  // Buscar empréstimo por ID
+
   async buscarPorId(req, res) {
     try {
       const emprestimo = await this.emprestimoService.buscarPorId(req.params.id);
@@ -39,7 +39,7 @@ class EmprestimoController {
     }
   }
 
-  // Realizar novo empréstimo
+
   async realizar(req, res) {
     try {
       const resultado = await this.emprestimoService.realizar(req.body);
@@ -50,7 +50,7 @@ class EmprestimoController {
     }
   }
 
-  // Devolver livro
+
   async devolver(req, res) {
     try {
       const resultado = await this.emprestimoService.devolver(req.params.id);
@@ -64,7 +64,7 @@ class EmprestimoController {
     }
   }
 
-  // Deletar empréstimo
+
   async deletar(req, res) {
     try {
       const resultado = await this.emprestimoService.deletar(req.params.id);

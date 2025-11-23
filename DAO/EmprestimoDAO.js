@@ -1,4 +1,4 @@
-// DAO/EmprestimoDAO.js
+
 const Emprestimo = require('../models/Emprestimo');
 
 class EmprestimoDAO {
@@ -52,7 +52,7 @@ class EmprestimoDAO {
         e.data_retirada,
         e.data_prevista_devolucao,
         e.data_devolucao,
-        e.id_multa // id da multa (nullable)
+        e.id_multa 
       );
     } finally {
       conn.release();

@@ -1,4 +1,4 @@
-// DAO/MultaDAO.js
+
 class MultaDAO {
   constructor(pool) {
     this.pool = pool;
@@ -49,7 +49,7 @@ class MultaDAO {
          WHERE m.id = ?`,
         [id]
       );
-      return rows; // caller decides (rows[0] vs rows)
+      return rows; 
     } finally {
       conn.release();
     }

@@ -3,7 +3,7 @@ class LivroController {
     this.livroService = livroService;
   }
 
-  // Listar todos os livros
+
   async listar(req, res) {
     try {
       const livros = await this.livroService.listarTodos();
@@ -14,7 +14,7 @@ class LivroController {
     }
   }
 
-  // Listar livros disponíveis
+
   async listarDisponiveis(req, res) {
     try {
       const livros = await this.livroService.listarDisponiveis();
@@ -25,7 +25,7 @@ class LivroController {
     }
   }
 
-  // Buscar livro por ID
+
   async buscarPorId(req, res) {
     try {
       const livro = await this.livroService.buscarPorId(req.params.id);
@@ -39,7 +39,7 @@ class LivroController {
     }
   }
 
-  // Criar novo livro
+
   async criar(req, res) {
     try {
       const resultado = await this.livroService.criar(req.body);
@@ -50,7 +50,7 @@ class LivroController {
     }
   }
 
-  // Atualizar livro
+
   async atualizar(req, res) {
     try {
       const resultado = await this.livroService.atualizar(req.params.id, req.body);
@@ -64,7 +64,7 @@ class LivroController {
     }
   }
 
-  // Deletar livro
+  
   async deletar(req, res) {
     try {
       const resultado = await this.livroService.deletar(req.params.id);

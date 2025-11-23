@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Biblioteca Universitária - Login</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* TELA DE LOGIN */
+    .login-container {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 400px;
+      animation: slideIn 0.5s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .login-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .login-header h1 {
+      color: #667eea;
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .login-header p {
+      color: #666;
+      font-size: 14px;
+    }
+
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group label {
+      color: #333;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .form-group input {
+      padding: 12px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    .btn-login {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 10px;
+    }
+
+    .btn-login:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-login:active {
+      transform: translateY(0);
+    }
+
+    .error-message {
+      background-color: #fee;
+      color: #c33;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 14px;
+      text-align: center;
+      display: none;
+    }
+
+    .error-message.show {
+      display: block;
+      animation: shake 0.5s;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
+    }
+
+    /* SISTEMA PRINCIPAL (OCULTO INICIALMENTE) */
+    .sistema-container {
+      display: none;
+      flex-direction: column;
+      min-height: 100vh;
+      background-color: #f5f5f5;
+    }
+
+    .sistema-container.active {
+      display: flex;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header-left h1 {
+      font-size: 28px;
+      margin-bottom: 5px;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .user-name {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .btn-logout {
+      background-color: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-logout:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .welcome-message {
+      background: white;
+      padding: 20px;
+      margin: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .welcome-message h2 {
+      color: #667eea;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 500px) {
+      .login-container {
+        margin: 20px;
+        padding: 30px 20px;
+      }
+
+      .header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- TELA DE LOGIN -->
+  <div class="login-container" id="loginContainer">
+    <div class="login-header">
+      <h1>📚 Biblioteca Universitária</h1>
+      <p>Faça login para acessar o sistema</p>
+    </div>
+
+    <div class="error-message" id="errorMessage">
+      Usuário ou senha incorretos!
+    </div>
+
+    <form class="login-form" id="loginForm">
+      <div class="form-group">
+        <label for="usuario">Usuário</label>
+        <input 
+          type="text" 
+          id="usuario" 
+          placeholder="Digite seu usuário"
+          required
+          autocomplete="username"
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="senha">Senha</label>
+        <input 
+          type="password" 
+          id="senha" 
+          placeholder="Digite sua senha"
+          required
+          autocomplete="current-password"
+        >
+      </div>
+
+      <button type="submit" class="btn-login">Entrar</button>
+    </form>
+
+    <div style="margin-top: 20px; padding: 15px; background: #f0f0f0; border-radius: 8px; font-size: 12px; color: #666;">
+      <strong>🔑 Credenciais de teste:</strong><br>
+      Usuário: <code>admin</code><br>
+      Senha: <code>admin123</code>
+    </div>
+  </div>
+
+  <!-- SISTEMA PRINCIPAL -->
+  <div class="sistema-container" id="sistemaContainer">
+    <header class="header">
+      <div class="header-left">
+        <h1>📚 Biblioteca Universitária</h1>
+      </div>
+      <div class="user-info">
+        <span class="user-name">Olá, <strong id="nomeUsuarioLogado"></strong></span>
+        <button class="btn-logout" onclick="logout()">Sair</button>
+      </div>
+    </header>
+
+    <div class="welcome-message">
+      <h2>Bem-vindo ao Sistema!</h2>
+      <p>Você está logado com sucesso. Agora você pode acessar todas as funcionalidades.</p>
+      <p style="margin-top: 10px; color: #666;">
+        <strong>Próximo passo:</strong> Integre esta tela com o resto do seu sistema de biblioteca.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // Credenciais de exemplo (em produção, use backend para validação)
+    const USUARIOS_VALIDOS = {
+      'admin': 'admin123',
+      'biblioteca': 'biblioteca123',
+      'usuario': 'senha123'
+    };
+
+    
+    window.addEventListener('DOMContentLoaded', () => {
+      const usuarioLogado = localStorage.getItem('usuarioLogado');
+      if (usuarioLogado) {
+        mostrarSistema(usuarioLogado);
+      }
+    });
+
+   
+    document.getElementById('loginForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const usuario = document.getElementById('usuario').value;
+      const senha = document.getElementById('senha').value;
+      const errorMessage = document.getElementById('errorMessage');
+
+     
+      if (USUARIOS_VALIDOS[usuario] && USUARIOS_VALIDOS[usuario] === senha) {
+       
+        localStorage.setItem('usuarioLogado', usuario);
+        mostrarSistema(usuario);
+      } else {
+        
+        errorMessage.classList.add('show');
+        document.getElementById('senha').value = '';
+        
+        setTimeout(() => {
+          errorMessage.classList.remove('show');
+        }, 3000);
+      }
+    });
+
+  
+    function mostrarSistema(usuario) {
+      document.getElementById('loginContainer').style.display = 'none';
+      document.getElementById('sistemaContainer').classList.add('active');
+      document.getElementById('nomeUsuarioLogado').textContent = usuario;
+    }
+
+
+    function logout() {
+      if (confirm('Deseja realmente sair do sistema?')) {
+        localStorage.removeItem('usuarioLogado');
+        document.getElementById('sistemaContainer').classList.remove('active');
+        document.getElementById('loginContainer').style.display = 'block';
+        document.getElementById('loginForm').reset();
+      }
+    }
+    function mostrarSistema(usuario) {
+  localStorage.setItem('usuarioLogado', usuario);
+
+  window.location.href = 'index.html';
+}
+  </script>
+</body>
+</html>

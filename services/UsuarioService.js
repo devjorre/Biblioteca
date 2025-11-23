@@ -32,19 +32,18 @@ class UsuarioService {
     }
   }
 
-  // Criar novo usuário
+
   async criar(dados) {
     try {
-      // Validar dados
+  
       Usuario.validar(dados.nome, dados.matricula, dados.email);
-      
-      // Verificar se matrícula já existe
+
       const usuarioExistente = await this.usuarioDAO.buscarPorMatricula(dados.matricula);
       if (usuarioExistente) {
         throw new Error('Matrícula já cadastrada');
       }
       
-      // Criar novo usuário
+    
       const usuario = new Usuario(null, dados.nome, dados.matricula, dados.email, dados.telefone);
       await this.usuarioDAO.criar(usuario);
       
@@ -54,21 +53,21 @@ class UsuarioService {
     }
   }
 
-  // Atualizar usuário
+
   async atualizar(id, dados) {
     try {
-      // Validar ID
+     
       if (!id || isNaN(id)) {
         throw new Error('ID inválido');
       }
       
-      // Verificar se usuário existe
+      
       const usuario = await this.usuarioDAO.buscarPorId(id);
       if (!usuario) {
         throw new Error('Usuário não encontrado');
       }
       
-      // Atualizar dados
+     
       usuario.nome = dados.nome || usuario.nome;
       usuario.email = dados.email || usuario.email;
       usuario.telefone = dados.telefone || usuario.telefone;
@@ -102,5 +101,24 @@ class UsuarioService {
       throw new Error(`Erro ao deletar usuário: ${error.message}`);
     }
   }
+  async buscarPorNomeCompleto(nome) {
+  try {
+    if (!nome) {
+      throw new Error("Nome é obrigatório para busca");
+    }
+
+    const usuarios = await this.usuarioDAO.buscarPorNomeCompleto(nome);
+
+    if (!usuarios || usuarios.length === 0) {
+      throw new Error("Usuário não encontrado");
+    }
+
+    return usuarios;
+
+  } catch (error) {
+    throw new Error(`Erro ao buscar usuário por nome: ${error.message}`);
+  }
+}
+
 }
 module.exports = UsuarioService;

@@ -67,10 +67,10 @@ class EmprestimoService {
 
     if (dataDevolucao > dataPrevista) {
       const diasAtraso = Math.floor((dataDevolucao - dataPrevista) / (1000 * 60 * 60 * 24));
-      valorMulta = diasAtraso * 1.00; // valor por dia (ajuste se desejar)
+      valorMulta = diasAtraso * 1.00; 
     }
 
-    // se houve multa > 0, criar registro na tabela multas
+    
     let id_multa = null;
     if (valorMulta > 0) {
       const multaObj = {
@@ -83,14 +83,14 @@ class EmprestimoService {
       id_multa = result.insertId;
     }
 
-    // atualizar devolução e relacionar id_multa (nullable)
+    
     await this.emprestimoDAO.atualizarDevolucao(
       id,
       dataDevolucao.toISOString().split('T')[0],
       id_multa
     );
 
-    // marcar livro disponível
+    
     await this.livroDAO.atualizarDisponibilidade(emprestimo.id_livro, true);
 
     return { mensagem: 'Livro devolvido com sucesso', multa: valorMulta, id_multa };
@@ -102,7 +102,7 @@ class EmprestimoService {
     const emprestimo = await this.emprestimoDAO.buscarPorId(id);
     if (!emprestimo) throw new Error('Empréstimo não encontrado');
 
-    // opcional: remover multa associada antes de deletar emprestimo
+    
     if (emprestimo.id_multa) {
       await this.multaDAO.deletar(emprestimo.id_multa);
     }

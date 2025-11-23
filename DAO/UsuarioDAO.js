@@ -101,6 +101,26 @@ class UsuarioDAO {
       throw new Error(`Erro ao deletar usuário: ${error.message}`);
     }
   }
+async buscarPorNomeCompleto(nome) {
+  try {
+    const connection = await this.pool.getConnection();
+    const [rows] = await connection.query(
+      "SELECT * FROM usuario WHERE nome = ?",
+      [nome]
+    );
+    connection.release();
+
+    if (rows.length === 0) {
+      return [];
+    }
+
+    return rows.map(u => new Usuario(u.id_usuario, u.nome, u.matricula, u.email, u.telefone));
+
+  } catch (error) {
+    throw new Error(`Erro ao buscar usuário por nome: ${error.message}`);
+  }
+}
 
 }
 module.exports = UsuarioDAO;
+

@@ -1,3 +1,4 @@
+
 require('dotenv').config();
 const express = require('express');
 const mysql = require('mysql2/promise');
@@ -32,6 +33,17 @@ app.use((req, res, next) => {
   console.log(`[${new Date().toISOString()}] ${req.method} ${req.path}`);
   next();
 });
+const path = require("path");
+
+
+
+app.use(express.static(path.join(__dirname, "public")));
+
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "login.html"));
+});
+
 
 let pool;
 let usuarioController;
@@ -91,6 +103,7 @@ function inicializarRotas() {
   app.get('/api/usuarios/:id', (req, res) => usuarioController.buscarPorId(req, res));
   app.put('/api/usuarios/:id', (req, res) => usuarioController.atualizar(req, res));
   app.delete('/api/usuarios/:id', (req, res) => usuarioController.deletar(req, res));
+app.get('/api/usuarios/buscar', (req, res) => usuarioController.buscarPorNome(req, res));
 
 
   app.get('/api/livros', (req, res) => livroController.listar(req, res));
@@ -113,6 +126,7 @@ function inicializarRotas() {
   app.put('/api/multas/:id', (req, res) => multaController.atualizar(req, res));
   app.put('/api/multas/:id/pagar', (req, res) => multaController.pagar(req, res));
   app.delete('/api/multas/:id', (req, res) => multaController.deletar(req, res));
+
 }
 
 async function iniciarServidor() {
@@ -124,5 +138,7 @@ async function iniciarServidor() {
     console.log(`\n✓ Servidor rodando em http://localhost:${PORT}`);
   });
 }
+
+
 
 iniciarServidor();
