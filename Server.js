@@ -1,4 +1,3 @@
-
 require('dotenv').config();
 const express = require('express');
 const mysql = require('mysql2/promise');
@@ -35,15 +34,15 @@ app.use((req, res, next) => {
 });
 const path = require("path");
 
-
-
-app.use(express.static(path.join(__dirname, "public")));
-
+app.use(express.static(__dirname));
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "login.html"));
+  res.sendFile(path.join(__dirname, "login.html"));
 });
-
+app.use((req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.path}`);
+  next();
+});
 
 let pool;
 let usuarioController;

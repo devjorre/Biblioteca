@@ -1,6 +1,4 @@
-        
-     
-     
+
      * {
             margin: 0;
             padding: 0;
@@ -413,3 +411,20 @@
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(149, 165, 166, 0.3);
 }
+    body {
+      display: none; 
+      font-family: Arial;
+    }
+    header {
+      background: #aab2da;
+      color: white;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    button {
+      padding: 10px 15px;
+      cursor: pointer;
+    }
+    

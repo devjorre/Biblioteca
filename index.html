@@ -18,6 +18,15 @@
         <button class="nav-btn" data-page="livros">Livros</button>
         <button class="nav-btn" data-page="emprestimos">Empréstimos</button>
         <button class="nav-btn" data-page="multas">Multas</button>
+       <header>
+
+    <button onclick="deslogar()">Sair</button>
+  </header>
+
+  <main style="padding: 20px;">
+    <h3>Bem-vindo ao sistema!</h3>
+ 
+  </main>
       </nav>
     </header>
     
@@ -193,8 +202,51 @@
   </div>
 
   <script>
-   
-   
+
+window.addEventListener("DOMContentLoaded", () => {
+  const usuarioLogado = localStorage.getItem("usuarioLogado");
+
+
+  if (!usuarioLogado) {
+    if (!window.location.pathname.includes("login.html")) {
+      window.location.href = "login.html";
+    }
+    return;
+  }
+
+
+  if (window.location.pathname.includes("login.html")) {
+    window.location.href = "index.html";
+  }
+});
+
+
+function fazerLogin() {
+  const usuario = document.getElementById("usuario").value;
+  const senha = document.getElementById("senha").value;
+
+
+  if (usuario === "" || senha === "") {
+    alert("Preencha usuário e senha!");
+    return;
+  }
+
+
+  localStorage.setItem("usuarioLogado", JSON.stringify({ usuario }));
+
+  window.location.href = "index.html";
+}
+
+
+function deslogar() {
+  localStorage.removeItem("usuarioLogado");
+  window.location.href = "login.html";
+}
+
+      const usuario = localStorage.getItem("usuarioLogado");
+    if (usuario) {
+      document.body.style.display = "block"; 
+    }
 window.addEventListener('DOMContentLoaded', () => {
   const usuarioLogado = localStorage.getItem('usuarioLogado');
   
@@ -953,8 +1005,6 @@ function logout() {
       </div>
   </div>
 </div>
-
-
 
 
 </body>
