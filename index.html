@@ -244,6 +244,7 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     }
 
+
     async function buscarEmprestimo() {
   const nome = document.getElementById("buscar-emprestimo").value.trim();
 
@@ -439,6 +440,7 @@ function limparBuscaLivro() {
     }
 
 
+
     async function carregarLivros() {
       try {
         const response = await fetch(`${API_URL}/livros`);
@@ -525,6 +527,7 @@ function limparBuscaLivro() {
         console.error('Erro ao carregar livros para select:', error);
       }
     }
+
 
 
     async function carregarEmprestimos() {
@@ -666,6 +669,7 @@ function limparBuscaLivro() {
         alert('Erro ao deletar empréstimo');
       }
     }
+
 
 
     document.getElementById('form-multa').addEventListener('submit', async (e) => {
