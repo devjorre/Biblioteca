@@ -7,20 +7,34 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  
+  <div id="mensagem-global" 
+     style="
+        display:none; 
+        position: fixed; 
+        top: 20px; 
+        right: 20px; 
+        padding: 15px; 
+        border-radius: 8px; 
+        font-size: 16px; 
+        z-index: 9999;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+     ">
+</div>
+
   
   <div class="container">
     <header class="header">
       <h1>📚 Biblioteca Universitária</h1>
-      <nav class="nav">
-        <button class="nav-btn active" data-page="home">Início</button>
-        <button class="nav-btn" data-page="usuarios">Usuários</button>
-        <button class="nav-btn" data-page="livros">Livros</button>
-        <button class="nav-btn" data-page="emprestimos">Empréstimos</button>
-        <button class="nav-btn" data-page="multas">Multas</button>
-       <header>
+<nav class="nav">
+  <button class="nav-btn active" data-page="home">Início</button>
+  <button class="nav-btn" data-page="usuarios">Usuários</button>
+  <button class="nav-btn" data-page="livros">Livros</button>
+  <button class="nav-btn" data-page="emprestimos">Empréstimos</button>
+  <button class="nav-btn" data-page="multas">Multas</button>
 
-    <button onclick="deslogar()">Sair</button>
+  <button onclick="deslogar()">Sair</button>
+</nav>
+
   </header>
 
   <main style="padding: 20px;">
@@ -174,6 +188,8 @@
             <label style="margin-top: 10px;">
             <label>
   <input type="checkbox" id="multa-pago"> Pago
+<p id="mensagemErro" style="color: red; font-weight: bold; display: none;"></p>
+
 </label>
 
 
@@ -182,6 +198,8 @@
             <button type="button" id="btn-limpar-form-multa" class="btn-secondary">Limpar</button>
           </form>
         </div>
+        <div id="mensagem" style="display:none; padding:10px; border-radius:5px; margin-bottom:10px;"></div>
+
 <div class="search-container">
   <input 
     type="text" 
@@ -209,6 +227,7 @@
   </div>
 
   <script>
+
 
 window.addEventListener("DOMContentLoaded", () => {
   const usuarioLogado = localStorage.getItem("usuarioLogado");
@@ -375,6 +394,7 @@ window.addEventListener('DOMContentLoaded', () => {
     alert("Erro ao buscar empréstimo.");
   }
 }
+
 async function buscarLivroTempoReal() {
   const titulo = document.getElementById("buscar-livro").value.trim();
 
@@ -993,6 +1013,7 @@ function logout() {
     window.location.href = 'login.html';
   }
 }
+
 
   </script>
 <div id="modalPagamento" class="modal" style="display:none;">

@@ -71,6 +71,20 @@ async pagar(req, res) {
     }
   }
 }
+const resultado = await MultaDAO.criar(multa);
+res.json(resultado);
+
+try {
+    const resultado = await MultaDAO.criar(multa);
+    res.json({ sucesso: true, dados: resultado });
+} catch (erro) {
+    console.error("Erro ao cadastrar multa:", erro);
+    res.status(400).json({
+        sucesso: false,
+        mensagem: "O ID do empréstimo informado não existe. Escolha um empréstimo válido."
+    });
+}
+
 
 
 module.exports = MultaController;
