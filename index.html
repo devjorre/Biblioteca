@@ -61,7 +61,14 @@
             <input type="text" id="usuario-nome" placeholder="Nome Completo" required>
             <input type="text" id="usuario-matricula" placeholder="Matrícula" required>
             <input type="email" id="usuario-email" placeholder="Email" required>
-            <input type="tel" id="usuario-telefone" placeholder="Telefone">
+            <input 
+  type="tel" 
+  id="usuario-telefone" 
+  placeholder="Telefone (somente números)"
+  pattern="[0-9]*"
+  inputmode="numeric"
+  oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+/>
             <button type="submit" class="btn-primary">Adicionar Usuário</button>
           </form>
         </div>
