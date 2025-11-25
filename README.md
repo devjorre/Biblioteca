@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Sistema de Biblioteca Universitária 📚
 
 Projeto full-stack de um sistema de gerenciamento de biblioteca para fins acadêmicos e de prototipação. Inclui frontend HTML/CSS/JavaScript e backend Node.js + Express com CRUD de usuários, livros, empréstimos e multas.
